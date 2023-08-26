@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Translate</title>
+</head>
+<body>
+    <h1>Utilisez votre lien et traduisez votre fichier</h1>
+    
+    <div class="content">
+        <form method="post" action="{% url 'link' %}" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            
+            <div id="url_input">
+                <p>Entrez le lien URL :</p>
+                <!-- <input type="text" name="fichier_url" value="{{ fichier_url }}"> -->
+                {{ form.fichier_url }}
+            </div>
+        
+            <br>
+        
+            <label for="choix_link">Choisissez le format du fichier de sortie :</label>
+            <select name="choix_link" id="choix_link">
+                <option value="audio">Audio</option>
+                <option value="video">Vidéo</option>
+                <option value="texte">Texte</option>
+            </select>
+        
+            <br><br>
+
+            {% if choix_link == "audio" %} {# Vérifie si le choix est "audio" #}
+            
+            <br>
+            <audio controls>
+                <source src="{{ audio_url }}" type="audio/mpeg">
+                Votre navigateur ne supporte pas l'élément audio.
+            </audio>
+            
+            {% elif choix_link == "video" %} {# Vérifie si le choix est "video" #}
+                
+                <br>
+                <video controls>
+                    <source src="{{ video_url }}" type="video/mp4">
+                    Votre navigateur ne supporte pas l'élément vidéo.
+                </video>
+                
+            {% elif choix_link == "texte" %} {# Vérifie si le choix est "texte" #}
+                
+                <textarea name="texte" id="texte" rows="4" cols="50"></textarea>
+                
+            {% endif %}
+        
+            <label for="langue_traduction">Langue de traduction :</label>
+            <select name="langue_traduction" id="langue_traduction">
+                {% for code, label in form.langue_traduction.field.choices %}
+                    <option value="{{ code }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+        
+            <br><br>
+        
+            <!-- <input type="hidden" name="fichier_url" value="{{ fichier_url }}"> -->
+        
+            <input type="submit" value="Translate">
+        </form>
+        
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const urlInput = document.getElementById("url_input");
+        
+        const choixSelect = document.getElementById("choix_link");
+        choixSelect.addEventListener("change", function() {
+            if (this.value === "url") {
+                urlInput.style.display = "block";
+            } else {
+                urlInput.style.display = "block"; // Modification ici pour garder la case URL visible
+            }
+        });
+    });
+
+    </script>
+</body>
+</html>

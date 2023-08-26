@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Résultat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        audio,
+        video {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+
+        .download-button {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function downloadText() {
+            var text = document.getElementById("text").innerText;
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', 'texte_traduit.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Résultat du traitement</h1>
+    {% if audio_url %}
+        <h1>Audio généré :</h1>
+        <audio controls>
+            <source src="{{ audio_url }}" type="audio/mpeg">
+            Votre navigateur ne supporte pas l'élément audio.
+        </audio>
+        <a href="{{ audio_url }}" download="audio.mp3">Télécharger l'audio</a>
+    {% endif %}
+
+    {% if video_url %}
+        <h1>Vidéo générée :</h1>
+        <video controls>
+            <source src="{{ video_url }}" type="video/mp4">
+            Votre navigateur ne supporte pas l'élément vidéo.
+        </video>
+        <a href="{{ video_url }}" download="video.mp4">Télécharger la vidéo</a>
+    {% endif %}
+
+    {% if texte %}
+        <h1>Texte traduit :</h1>
+        <p>{{ texte }}</p>
+        <a href="#" class="download-button" onclick="downloadText()">Télécharger le texte</a>
+    {% endif %}
+</body>
+</html>

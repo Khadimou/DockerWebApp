@@ -1,0 +1,16 @@
+
+{% load static %}
+
+{% block content %}
+    <h1>Enregistrement vocal</h1>
+
+    <div>
+        <button id="start">Démarrer l'enregistrement</button>
+        <button id="stop">Arrêter l'enregistrement</button>
+        <button id="play">Lire l'enregistrement</button>
+    </div>
+
+    <audio id="audioPlayer" controls></audio>
+
+    <script src="{% static 'js/record.js' %}"></script>
+{% endblock %}

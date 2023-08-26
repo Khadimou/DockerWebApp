@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Téléchargement de fichiers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/download.css' %}">
+</head>
+<body>
+    <h1>Téléchargement de fichiers</h1>
+    <p> Clique sur le bouton Translate pour générer ton output avec une voix synthétique </p>
+    <form method="post" enctype="multipart/form-data" action="{% url 'telechargement' %}">
+        {% csrf_token %}
+        
+        <label for="choix">Choisissez le format du fichier de sortie :</label>
+        <select name="choix" id="choix">
+            <option value="audio">Audio</option>
+            <option value="video">Vidéo</option>
+            <option value="texte">Texte</option>
+        </select>
+        
+        {% if choix == "audio" %} {# Vérifie si le choix est "audio" #}
+            <label for="fichier">Choisir un fichier audio :</label>
+            <input type="file" name="fichier" accept="audio/*">
+            <br>
+            <audio controls>
+                <source src="{{ fichier.url }}" type="audio/mpeg">
+                Votre navigateur ne supporte pas l'élément audio.
+            </audio>
+        {% elif choix == "video" %} {# Vérifie si le choix est "video" #}
+            <label for="fichier">Choisir un fichier vidéo :</label>
+            <input type="file" name="fichier" accept="video/*">
+            <br>
+            <video controls>
+                <source src="{{ fichier.url }}" type="video/mp4">
+                Votre navigateur ne supporte pas l'élément vidéo.
+            </video>
+        {% elif choix == "texte" %} {# Vérifie si le choix est "texte" #}
+            <label for="texte">Saisir un texte :</label>
+            <textarea name="texte" id="texte" rows="4" cols="50"></textarea>
+        {% endif %}
+        
+        <input type="file" name="fichier">
+        <label for="langue">Langue de traduction :</label>
+        <select name="langue" id="langue">
+            {% for code, label in form.langue.field.choices %}
+                <option value="{{ code }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Translate">
+    </form>
+</body>
+
+
+</html>

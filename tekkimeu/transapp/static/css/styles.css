@@ -1,0 +1,72 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    padding-top: 50px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.logo-container {
+    margin-bottom: 50px;
+}
+
+.logo-container img {
+    width: 200px;
+    height: auto;
+    border: 2px solid #336699;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* styles.css */
+
+/* ... autres styles ... */
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+.social-media-icons {
+    list-style-type: none;
+    padding: 0;
+}
+
+.social-media-icons li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social-media-icons li a {
+    display: inline-block;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.social-media-icons li a:hover {
+    color: #ccc;
+}

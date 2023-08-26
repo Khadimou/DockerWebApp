@@ -1,0 +1,24 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+h1 {
+    color: #336699;
+}
+
+p {
+    font-size: 18px;
+    color: #13bc87;
+    margin-bottom: 20px;
+}
+
+.langue-detectee {
+    font-weight: bold;
+    font-size: 24px;
+    color: #ff9900;
+    text-transform: uppercase;
+}

@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page d'accueil</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="logo-container">
+        <img src="{% static 'images/Tekkimeu.png' %}" alt="Logo">
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'accueil' %}">Home</a></li>
+            <li><a href="{% url 'telechargement' %}">Translate</a></li>
+            <li><a href="{% url 'detect_lang' %}">Detect Language</a></li>
+            <li><a href="{% url 'link' %}">Translate Using Link</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1>Bienvenue sur Tekkimeu</h1>
+        <p>Tekkimeu est un service de traduction en ligne. Il est possible de traduire et transcrire vos vidéos et audios dans plus de 20 langues différentes.</p>
+        <p>Pour commencer, cliquez sur le bouton "Translate" pour traduire vos fichiers.</p>
+    </div>
+    
+    <footer>
+        <p>Contactez-nous :</p>
+        <p>Téléphone : <strong>+123456789</strong></p>
+        <p>E-mail : <strong>k_diop5@hetic.eu</strong></p>
+        <ul class="social-media-icons">
+            <li><a href="https://www.linkedin.com/in/khadimoudiop/"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="https://www.instagram.com/un_abrare/"><i class="fa fa-instagram"></i></a></li>
+            <!-- Ajoutez d'autres icônes de réseaux sociaux si nécessaire -->
+        </ul>
+    </footer>
+</body>
+</html>

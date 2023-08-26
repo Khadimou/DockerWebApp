@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+
+  django:
+    container_name: django
+    build:
+      context: ./tekkimeu
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./tekkimeu:/usr/src/app/
+    ports:
+      - "8001:8000"
+    environment:
+      - SECRET_KEY=0930jd30j90j30j90j30j90j30j90j30j90j30j90j30j90j30j90j30j90j30j90j30j9
+      - DEBUG=1
+      - ALLOWED_HOSTS=localhost,127.0.0.1

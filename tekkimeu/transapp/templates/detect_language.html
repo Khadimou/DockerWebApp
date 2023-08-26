@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detect Language</title>
+</head>
+<body>
+    <h1>Detection de la langue</h1>
+
+    <div class="content">
+        <!-- Contenu de la page Detect Language -->
+        <form method="post" action="{% url 'detect_lang' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>Choose input type:</p>
+            <input type="radio" name="input_type" value="file" checked> Fichier local
+            <input type="radio" name="input_type" value="url"> Lien Youtube
+
+            <br><br>
+
+            <div id="file_input" style="display:block;">
+                <p>Choisissez un fichier :</p>
+                <input type="file" name="fichier">
+            </div>
+
+            <div id="url_input" style="display:none;">
+                <p>Entrez le lien URL :</p>
+                <input type="text" name="fichier_url">
+            </div>
+
+            <br>
+
+            <input type="submit" value="Detect">
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const fileInput = document.getElementById("file_input");
+            const urlInput = document.getElementById("url_input");
+            
+            const radioButtons = document.querySelectorAll("input[name='input_type']");
+            radioButtons.forEach(function(radioButton) {
+                radioButton.addEventListener("change", function() {
+                    if (this.value === "file") {
+                        fileInput.style.display = "block";
+                        urlInput.style.display = "none";
+                    } else if (this.value === "url") {
+                        fileInput.style.display = "none";
+                        urlInput.style.display = "block";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
